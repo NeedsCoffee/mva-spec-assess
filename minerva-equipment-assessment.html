@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Minerva Virtual Academy – Home Learning Equipment Assessment</title>
+<style>
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --ink:#18222d;
+  --muted:#637181;
+  --line:#d9e0e7;
+  --accent:#253b6e;
+  --accent2:#315ba8;
+  --good:#1f7a46;
+  --warn:#9a6200;
+  --bad:#a52d2d;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.45;
+}
+.shell{max-width:840px;margin:0 auto;padding:28px 18px 60px}
+header{
+  background:var(--card);
+  border-bottom:4px solid var(--accent);
+  padding:22px 24px;
+  box-shadow:0 1px 4px rgba(0,0,0,.07);
+}
+.brand{max-width:840px;margin:0 auto}
+.kicker{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+h1{font-size:28px;margin:4px 0 5px;color:var(--accent)}
+.subtitle{color:var(--muted);margin:0}
+.progress-wrap{margin:20px 0 10px}
+.progress-label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+.progress{height:8px;background:#dfe5eb;border-radius:99px;overflow:hidden}
+.progress>div{height:100%;width:0;background:var(--accent2);transition:width .35s ease}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:28px;
+  margin-top:18px;
+  box-shadow:0 2px 10px rgba(20,35,50,.06);
+}
+.step-tag{color:var(--accent2);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+h2{font-size:23px;margin:6px 0 10px}
+p{margin:8px 0 16px}
+.note{
+  background:#eef3f9;
+  border-left:4px solid var(--accent2);
+  padding:12px 14px;
+  margin:16px 0;
+}
+.options{display:grid;gap:10px;margin:18px 0}
+button.option{
+  text-align:left;
+  width:100%;
+  padding:14px 15px;
+  background:#fff;
+  border:1px solid #bfc9d4;
+  border-radius:7px;
+  font-size:16px;
+  cursor:pointer;
+  color:var(--ink);
+}
+button.option:hover,button.option:focus{
+  border-color:var(--accent2);
+  background:#f2f6fb;
+  outline:none;
+}
+button.option.selected{
+  border:2px solid var(--accent2);
+  background:#eaf1fb;
+  padding:13px 14px;
+}
+.actions{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+button.nav{
+  border:0;border-radius:6px;padding:12px 18px;font-size:15px;font-weight:700;cursor:pointer
+}
+.primary{background:var(--accent);color:#fff}
+.primary:disabled{opacity:.4;cursor:not-allowed}
+.secondary{background:#e7ebef;color:#24313e}
+.status{
+  display:inline-block;
+  font-size:13px;
+  font-weight:700;
+  border-radius:99px;
+  padding:5px 10px;
+  margin-top:3px;
+}
+.pass{background:#e7f5ed;color:var(--good)}
+.review{background:#fff3d8;color:var(--warn)}
+.fail{background:#fde9e9;color:var(--bad)}
+.hidden{display:none!important}
+.scan{
+  font-family:Consolas,Monaco,monospace;
+  background:#101820;color:#c8f7d4;border-radius:8px;
+  padding:17px;margin:18px 0;min-height:145px;
+  white-space:pre-line;font-size:14px
+}
+.result{
+  border:2px solid var(--bad);
+  background:#fffafa;
+}
+.result h2{color:var(--bad)}
+.asset{
+  margin:20px 0;
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden
+}
+.asset-row{display:grid;grid-template-columns:190px 1fr;border-top:1px solid var(--line)}
+.asset-row:first-child{border-top:0}
+.asset-row b,.asset-row span{padding:10px 13px}
+.asset-row b{background:#f3f5f7}
+.big-reveal{
+  margin-top:22px;
+  padding:20px;
+  background:#eef7f2;
+  border:2px solid var(--good);
+  border-radius:8px;
+  text-align:center;
+}
+.big-reveal h3{font-size:25px;margin:0 0 8px;color:var(--good)}
+.smallprint{font-size:12px;color:#798694;margin-top:25px}
+@media(max-width:600px){
+  .shell{padding:16px 10px 40px}
+  .card{padding:20px}
+  h1{font-size:23px}
+  .asset-row{grid-template-columns:1fr}
+  .asset-row b{padding-bottom:3px}
+  .asset-row span{padding-top:3px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="kicker">Student induction • September 2026</div>
+    <h1>Minerva Virtual Academy</h1>
+    <p class="subtitle">Home Learning Equipment Assessment</p>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="progress-wrap">
+    <div class="progress-label"><span id="progressText">Assessment not started</span><span id="progressPct">0%</span></div>
+    <div class="progress"><div id="bar"></div></div>
+  </div>
+
+  <section class="card" id="intro">
+    <div class="step-tag">Pre-induction check</div>
+    <h2>Computer suitability assessment</h2>
+    <p>Online learning works best when your main computer can comfortably handle live lessons, coursework, research, video calls and the software you may use during the school year.</p>
+    <div class="note"><b>Before continuing:</b> answer for the computer you expect to use most often for schoolwork.</div>
+    <p>The assessment takes a few minutes. You do not need to know every technical detail exactly.</p>
+    <div class="actions">
+      <span></span>
+      <button class="nav primary" onclick="start()">Begin assessment</button>
+    </div>
+  </section>
+
+  <section class="card hidden" id="question"></section>
+
+  <section class="card hidden" id="analysis">
+    <div class="step-tag">Assessment complete</div>
+    <h2>Checking submitted configuration…</h2>
+    <div class="scan" id="scanbox"></div>
+  </section>
+
+  <section class="card result hidden" id="result">
+    <div class="step-tag">Equipment status</div>
+    <h2>Current workstation: replacement recommended</h2>
+    <p>Your answers indicate that your current computer can probably handle basic online lessons, but it does not meet the recommended specification for the full 2026–27 home-learning workload.</p>
+
+    <div class="asset">
+      <div class="asset-row"><b>Assessment outcome</b><span>Replacement workstation authorised</span></div>
+      <div class="asset-row"><b>Academic workload</b><span>Approved</span></div>
+      <div class="asset-row"><b>Video conferencing</b><span>Approved</span></div>
+      <div class="asset-row"><b>Multitasking headroom</b><span>Approved</span></div>
+      <div class="asset-row"><b>Graphics capability</b><span>Excessive, but apparently authorised</span></div>
+      <div class="asset-row"><b>After-hours gaming</b><span>Technically outside the scope of this assessment</span></div>
+    </div>
+
+    <p>A suitable replacement has already been sourced with the following specification:</p>
+
+    <div class="asset">
+      <div class="asset-row"><b>Processor</b><span>Intel Core i7-13620H • 10 cores / 16 threads • up to 4.9 GHz</span></div>
+      <div class="asset-row"><b>Memory</b><span>16 GB DDR5-5200</span></div>
+      <div class="asset-row"><b>Storage</b><span>1 TB NVMe SSD</span></div>
+      <div class="asset-row"><b>Graphics</b><span>NVIDIA GeForce RTX 5050 Laptop GPU • 8 GB GDDR7</span></div>
+      <div class="asset-row"><b>Display</b><span>16-inch IPS • 1920 × 1200 • 165 Hz</span></div>
+      <div class="asset-row"><b>Networking</b><span>Wi-Fi 6E + Bluetooth</span></div>
+      <div class="asset-row"><b>Operating system</b><span>Windows 11</span></div>
+      <div class="asset-row"><b>Model</b><span>GIGABYTE Gaming A16</span></div>
+    </div>
+
+    <div class="big-reveal">
+      <h3>Your new school laptop is ready.</h3>
+      <p id="revealText">Replacement asset location: ask Mum and Dad for collection instructions.</p>
+    </div>
+
+    <p class="smallprint">Home equipment assessment prepared for the family induction. Not an official Minerva Virtual Academy technical service.</p>
+  </section>
+</main>
+
+<script>
+const questions = [
+  {
+    title:"Operating system",
+    text:"Which operating system does your current computer use?",
+    options:["Windows 11","Windows 10","macOS","ChromeOS","Something else / not sure"],
+    status:"Basic compatibility"
+  },
+  {
+    title:"Memory",
+    text:"How much RAM does your current computer have?",
+    help:"If you are not sure, choose the closest answer.",
+    options:["4 GB or less","8 GB","16 GB","32 GB or more","I don't know"],
+    status:"Multitasking capacity"
+  },
+  {
+    title:"Storage",
+    text:"What type of main storage does the computer use?",
+    options:["Hard disk drive (HDD)","SSD, under 500 GB","SSD, 500 GB","SSD, 1 TB or more","I don't know"],
+    status:"Application and coursework storage"
+  },
+  {
+    title:"Video lessons",
+    text:"How does the computer usually cope with a video call while several browser tabs and documents are open?",
+    options:["It struggles or becomes slow","Mostly fine","No noticeable slowdown","I've never really tested it"],
+    status:"Live lesson workload"
+  },
+  {
+    title:"Display",
+    text:"What best describes the computer's main display?",
+    options:["Under 1080p","1920 × 1080 / Full HD","1920 × 1200 or better","Higher-resolution display","I don't know"],
+    status:"Workspace suitability"
+  },
+  {
+    title:"Graphics hardware",
+    text:"Does the computer have a dedicated NVIDIA or AMD graphics processor?",
+    help:"This is not normally important for ordinary schoolwork. The assessment includes it for specialist applications.",
+    options:["No","Yes, an older entry-level GPU","Yes, a recent gaming GPU","I don't know what GPU it has"],
+    status:"Accelerated applications"
+  },
+  {
+    title:"Graphics memory",
+    text:"If known, how much dedicated graphics memory (VRAM) is available?",
+    options:["None / integrated graphics","2–4 GB","6 GB","8 GB or more","No idea"],
+    status:"Specialist workload headroom"
+  },
+  {
+    title:"High-refresh display support",
+    text:"Can the current computer drive its display at 120 Hz or above?",
+    help:"This question is included for… educational reasons.",
+    options:["No","Yes, 120 Hz","Yes, 144 Hz","Yes, 165 Hz or higher","I have absolutely no idea why school needs this"],
+    status:"Advanced visual responsiveness"
+  },
+  {
+    title:"Ray tracing capability",
+    text:"Does the computer support hardware-accelerated ray tracing?",
+    help:"Please do not question the syllabus.",
+    options:["No","Possibly","Yes","I am beginning to suspect this is not about Microsoft Teams"],
+    status:"Extremely serious academic graphics"
+  },
+  {
+    title:"Final compatibility check",
+    text:"Which of these sounds most like the computer you would actually like to use for online school?",
+    options:[
+      "Anything that can open a browser",
+      "Something quick and reliable",
+      "A powerful laptop with plenty of storage",
+      "A 16-inch gaming laptop with an i7, 16 GB RAM, 1 TB SSD and an RTX graphics card"
+    ],
+    status:"Student equipment preference"
+  }
+];
+
+let index = 0;
+const answers = [];
+
+function start(){
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("question").classList.remove("hidden");
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = questions[index];
+  const pct = Math.round((index/questions.length)*100);
+  document.getElementById("bar").style.width = pct+"%";
+  document.getElementById("progressPct").textContent = pct+"%";
+  document.getElementById("progressText").textContent = "Section "+(index+1)+" of "+questions.length;
+
+  const box = document.getElementById("question");
+  box.innerHTML = `
+    <div class="step-tag">${q.status}</div>
+    <h2>${q.title}</h2>
+    <p>${q.text}</p>
+    ${q.help ? `<div class="note">${q.help}</div>` : ""}
+    <div class="options">
+      ${q.options.map((o,i)=>`<button class="option" onclick="choose(${i},this)">${o}</button>`).join("")}
+    </div>
+    <div class="actions">
+      ${index ? `<button class="nav secondary" onclick="back()">Back</button>` : `<span></span>`}
+      <button class="nav primary" id="nextBtn" onclick="next()" disabled>${index===questions.length-1 ? "Submit assessment" : "Continue"}</button>
+    </div>`;
+  if(answers[index] !== undefined){
+    const opts = box.querySelectorAll(".option");
+    opts[answers[index]].classList.add("selected");
+    document.getElementById("nextBtn").disabled=false;
+  }
+}
+
+function choose(i,el){
+  answers[index]=i;
+  document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected");
+  document.getElementById("nextBtn").disabled=false;
+}
+
+function next(){
+  if(answers[index]===undefined) return;
+  if(index < questions.length-1){
+    index++;
+    renderQuestion();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }else{
+    runAnalysis();
+  }
+}
+
+function back(){
+  if(index>0){index--;renderQuestion();window.scrollTo({top:0,behavior:"smooth"});}
+}
+
+function runAnalysis(){
+  document.getElementById("question").classList.add("hidden");
+  document.getElementById("analysis").classList.remove("hidden");
+  document.getElementById("bar").style.width="100%";
+  document.getElementById("progressPct").textContent="100%";
+  document.getElementById("progressText").textContent="Processing results";
+
+  const lines = [
+    "Reviewing operating system compatibility........ PASS",
+    "Checking live lesson workload................... PASS",
+    "Checking storage performance.................... REVIEW",
+    "Checking multitasking headroom.................. REVIEW",
+    "Checking graphics acceleration.................. INSUFFICIENT",
+    "Checking 165 Hz educational requirement......... INSUFFICIENT",
+    "Checking ray-traced homework capability.......... INSUFFICIENT",
+    "",
+    "Searching approved replacement inventory.........",
+    "MATCH FOUND",
+    "",
+    "Preparing equipment recommendation..."
+  ];
+
+  const scan=document.getElementById("scanbox");
+  scan.textContent="";
+  let i=0;
+  const timer=setInterval(()=>{
+    scan.textContent += (i ? "\n" : "") + lines[i];
+    i++;
+    if(i>=lines.length){
+      clearInterval(timer);
+      setTimeout(showResult,1100);
+    }
+  },420);
+}
+
+function showResult(){
+  document.getElementById("analysis").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+  document.getElementById("progressText").textContent="Assessment complete";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
